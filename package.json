@@ -3,18 +3,20 @@
   "version": "0.0.1",
   "description": "Vicual form builder for Sparkle.",
   "main": "index.js",
+  "private": "true",
   "dependencies": {
-    "babel-core": "^5.8.25",
-    "babel-loader": "^5.3.2",
-    "webpack": "^1.12.2"
+    "react": "^0.13.3"
   },
   "devDependencies": {
     "babel-core": "^5.8.25",
     "babel-loader": "^5.3.2",
-    "webpack": "^1.12.2"
+    "babel-plugin-react-transform": "^1.1.1",
+    "react-transform-hmr": "^1.0.1",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --inline",
+    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --colors --hot --inline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
