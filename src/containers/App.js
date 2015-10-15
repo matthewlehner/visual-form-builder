@@ -1,3 +1,3 @@
-import FormBuilder from '../components/FormBuilder';
+import FormBuilder from "../components/FormBuilder";
 
 export default FormBuilder;

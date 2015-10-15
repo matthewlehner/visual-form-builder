@@ -1,6 +1,20 @@
-$base-bg-color: brown;
+@import "bourbon/app/assets/stylesheets/bourbon";
 
 body {
-  background: $base-bg-color;
   font-family: sans-serif;
+}
+
+.visual-form-builder {
+  @include display(flex);
+  @include flex-direction(column);
+}
+
+.visual-form-builder__body {
+  @include display(flex);
+  @include flex(1);
+}
+
+.form-building-blocks,
+.composed-form {
+  @include flex(1);
 }

@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import InputTypeList from "components/InputTypes";
+import ComposedForm from "components/ComposedForm";
 
-class FormBuilder extends Component {
+export default class FormBuilder extends Component {
   render() {
     return (
-      <header>
-        <h1>I'm going to be a FormBuilder!</h1>
-      </header>
+      <div className="visual-form-builder">
+        <header>
+          <h1>I'm a FormBuilder!</h1>
+        </header>
+        <section className="visual-form-builder__body">
+          <ComposedForm />
+          <InputTypeList />
+        </section>
+      </div>
     );
   }
 }
-
-export default FormBuilder;
