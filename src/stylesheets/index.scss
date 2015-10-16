@@ -18,3 +18,10 @@ body {
 .composed-form {
   @include flex(1);
 }
+
+.input-wrapper {
+  label,
+  input {
+    display: block;
+  }
+}
