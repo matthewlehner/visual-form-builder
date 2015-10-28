@@ -2,14 +2,20 @@ import React, { Component } from "react";
 
 export default class InputTypeList extends Component {
   render() {
+    let inputTypes = this.props.inputTypes.map( function (typeName) {
+      return (
+        <li key={typeName}
+            style={{
+              cursor: 'move'
+            }}>
+          {typeName}
+        </li>
+      );
+    });
+
     return (
       <ul className="form-building-blocks">
-        <li>Text</li>
-        <li>Checkbox</li>
-        <li>Date</li>
-        <li>Email</li>
-        <li>Password</li>
-        <li>Phone Number</li>
+        {inputTypes}
       </ul>
     );
   }

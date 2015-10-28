@@ -2,6 +2,15 @@ import React, { Component } from "react";
 import InputTypeList from "components/InputTypes";
 import ComposedForm from "components/ComposedForm";
 
+const inputTypes = [
+  "Text",
+  "Checkbox",
+  "Date",
+  "Email",
+  "Password",
+  "Phone Number"
+]
+
 export default class FormBuilder extends Component {
   render() {
     return (
@@ -11,7 +20,7 @@ export default class FormBuilder extends Component {
         </header>
         <section className="visual-form-builder__body">
           <ComposedForm />
-          <InputTypeList />
+          <InputTypeList inputTypes={inputTypes} />
         </section>
       </div>
     );
