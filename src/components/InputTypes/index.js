@@ -1,22 +1,24 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
+import InputType from '../InputType';
 
 export default class InputTypeList extends Component {
   render() {
-    let inputTypes = this.props.inputTypes.map( function (typeName) {
+    let inputComponents = this.props.inputTypes.map( function (typeName) {
       return (
-        <li key={typeName}
-            style={{
-              cursor: 'move'
-            }}>
-          {typeName}
-        </li>
+        <InputType key={typeName} typeName={typeName} />
       );
     });
 
     return (
       <ul className="form-building-blocks">
-        {inputTypes}
+        {inputComponents}
       </ul>
     );
   }
+}
+
+InputTypeList.propTypes = {
+  inputTypes: PropTypes.arrayOf(
+    PropTypes.string.isRequired
+  )
 }
