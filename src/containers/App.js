@@ -6,7 +6,7 @@ export default class App extends Component {
     return (
       <div className="visual-form-builder">
         <header>
-          <h1>I'm a FormBuilder!</h1>
+          <h1>FormBuilder</h1>
         </header>
         <FormBuilder />
       </div>

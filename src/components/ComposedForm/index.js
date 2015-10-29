@@ -1,41 +1,26 @@
 import React, { Component } from "react";
 import InputTemplate from "./InputTemplate";
+import InputEditForm from "./InputEditForm";
 
 export default class ComposedForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputs: [{
-        type: "text",
-        label: "Name",
-        required: true,
-        placeholder: "Enter your name"
-      }, {
-        type: "email",
-        label: "Email",
-        required: true,
-        placeholder: "Your email address, please"
-      }, {
-        type: "tel",
-        placeholder: "Telephone Number!"
-      }, {
-        type: "checkbox",
-        label: "You can contact me by email"
-      }, {
-        type: "submit",
-        value: "Send me!"
-      }]
-    };
-  }
-
   render() {
-    let inputs = this.state.inputs.map((input) => {
-      return <InputTemplate {...input} />
+    let inputs = this.props.inputs.map((input, index) => {
+      return (
+        <InputTemplate
+          {...input}
+          style={{
+            cursor: "move"
+          }}
+          key={index} />
+      );
     });
 
     return (
       <div className="composed-form">
         {inputs}
+        <InputEditForm
+          {...this.props.inputs[0]}
+          onUpdateInput={this.props.onUpdateInput} />
       </div>
     );
   }

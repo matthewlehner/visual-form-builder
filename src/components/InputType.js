@@ -5,10 +5,15 @@ class InputType extends Component {
     let { typeName } = this.props;
 
     return (
-      <li style={{ cursor: 'move' }}>
+      <li style={{cursor: 'move' }}>
         {typeName}
+        <button onClick={e => this.handleClick(e)}>Add</button>
       </li>
     );
+  }
+
+  handleClick(e) {
+    this.props.onAddInput(this.props.typeName)
   }
 }
 
