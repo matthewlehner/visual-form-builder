@@ -9,6 +9,8 @@ import { DevTools, DebugPanel, LogMonitor } from "redux-devtools/lib/react";
 
 const store = configureStore();
 
+let rootEl = document.getElementById("root");
+
 render(
   <div>
     <Provider store={store}>
@@ -18,5 +20,5 @@ render(
       <DevTools store={store} monitor={LogMonitor} />
     </DebugPanel>
   </div>,
-  document.getElementById("root")
+  rootEl
 );
