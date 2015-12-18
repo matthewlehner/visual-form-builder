@@ -1,23 +1,28 @@
 {
-  "stage": 2,
+  "presets": ["es2015", "react"],
   "env": {
     // only enable it when process.env.NODE_ENV is 'development' or undefined
     "development": {
-      "plugins": ["react-transform"],
-      "extra": {
-        // must be defined and be an object
-        "react-transform": {
+      "plugins": [
+        // must be an array with options object as second item
+        ["react-transform", {
+          // must be an array of objects
           "transforms": [{
+            // can be an NPM module name or a local path
             "transform": "react-transform-hmr",
-            // if you use React Native, pass "react-native" instead:
+            // see transform docs for "imports" and "locals" dependencies
             "imports": ["react"],
-            // this is important for Webpack HMR:
             "locals": ["module"]
+          }, {
+            // you can have many transforms, not just one
+            "transform": "react-transform-catch-errors",
+            "imports": ["react", "redbox-react"]
           }]
-          // note: you can put more transforms into array
-          // this is just one of them!
-        }
-      }
+          // by default we only look for `React.createClass` (and ES6 classes)
+          // but you can tell the plugin to look for different component factories:
+          // factoryMethods: ["React.createClass", "createClass"]
+        }]
+      ]
     }
   }
 }

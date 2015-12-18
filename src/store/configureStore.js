@@ -1,15 +1,14 @@
 import { compose, createStore, applyMiddleware } from "redux";
 import reducer from "../reducers";
+import DevTools from "../containers/dev-tools";
 
-import { devTools, persistState } from "redux-devtools";
 
 const finalCreateStore = compose(
+  // Middleware for development
   applyMiddleware(),
 
-  devTools(),
-
-  persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
-
+  // Enable Redux DevTools with monitors you choose
+  DevTools.instrument()
 )(createStore);
 
 export default function configureStore(initialState) {
@@ -17,8 +16,7 @@ export default function configureStore(initialState) {
 
   if (module.hot) {
     module.hot.accept("../reducers", () => {
-      const nextReducer = require("../reducers");
-      store.replace(nextReducer);
+      store.replaceReducers(require("../reducers"));
     });
   }
 

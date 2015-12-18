@@ -4,21 +4,18 @@ import { Provider } from "react-redux";
 import App from "./containers/App";
 import configureStore from "./store/configureStore";
 
-// import { devTools, persistState } from 'redux-devtools';
-import { DevTools, DebugPanel, LogMonitor } from "redux-devtools/lib/react";
+import DevTools from "./containers/dev-tools";
 
 const store = configureStore();
 
-let rootEl = document.getElementById("root");
+const rootEl = document.getElementById("root");
 
 render(
-  <div>
-    <Provider store={store}>
+  <Provider store={store}>
+    <div>
       <App />
-    </Provider>
-    <DebugPanel top right bottom>
-      <DevTools store={store} monitor={LogMonitor} />
-    </DebugPanel>
-  </div>,
+      <DevTools />
+    </div>
+  </Provider>,
   rootEl
 );
