@@ -38,6 +38,7 @@
   },
   "scripts": {
     "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --colors --hot --inline",
+    "compile": "NODE_ENV=production ./node_modules/.bin/webpack -p",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -2,7 +2,10 @@ var webpack = require("webpack");
 var path = require('path');
 
 module.exports = {
-  entry: ["./src/stylesheets/index.scss", "./src/index.js"],
+  entry: {
+    app: ["./src/stylesheets/index.scss", "./src/index.js"],
+    vendor: ["react", "react-dom", "react-redux", "redux"]
+  },
 
   output: {
     path: __dirname,
@@ -31,6 +34,7 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js"),
     new webpack.DefinePlugin({
       PRODUCTION: process.env.NODE_ENV === "production"
     })
