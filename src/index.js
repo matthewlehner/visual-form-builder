@@ -1,21 +1,13 @@
 import React from "react";
 import { render } from "react-dom";
-import { Provider } from "react-redux";
-import App from "./containers/App";
-import configureStore from "./store/configureStore";
-
-import DevTools from "./containers/dev-tools";
+import Root from "./containers/root";
+import configureStore from "./store/configure-store";
 
 const store = configureStore();
 
 const rootEl = document.getElementById("root");
 
 render(
-  <Provider store={store}>
-    <div>
-      <App />
-      <DevTools />
-    </div>
-  </Provider>,
+  <Root store={store} />,
   rootEl
 );
