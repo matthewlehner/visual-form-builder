@@ -1,20 +1,23 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 
-class InputType extends Component {
+export default class InputType extends Component {
   render() {
-    let { typeName } = this.props;
+    const { typeName } = this.props;
 
     return (
-      <li style={{cursor: 'move' }}>
+      <li style={{ cursor: "move" }}>
         {typeName}
         <button onClick={e => this.handleClick(e)}>Add</button>
       </li>
     );
   }
 
-  handleClick(e) {
-    this.props.onAddInput(this.props.typeName)
+  handleClick() {
+    this.props.onAddInput(this.props.typeName);
   }
 }
 
-export default InputType;
+InputType.propTypes = {
+  typeName: PropTypes.string.isRequired,
+  onAddInput: PropTypes.func.isRequired
+};

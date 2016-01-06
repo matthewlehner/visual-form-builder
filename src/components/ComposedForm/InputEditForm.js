@@ -14,7 +14,8 @@ export default class InputEditForm extends Component {
           <input
             type="text"
             onChange={e => this.handleChange(e)}
-            value={this.props.label} />
+            value={this.props.label}
+          />
         </label>
 
         <label>
@@ -22,7 +23,8 @@ export default class InputEditForm extends Component {
           <input
             type="text"
             onChange={e => this.handleChange(e)}
-            value={this.props.placeholder} />
+            value={this.props.placeholder}
+          />
         </label>
 
         <label>
@@ -30,19 +32,23 @@ export default class InputEditForm extends Component {
           <input
             type="checkbox"
             onChange={e => this.handleChange(e)}
-            checked={this.props.required} />
+            checked={this.props.required}
+          />
         </label>
       </form>
     );
   }
 
-  handleChange(event) {
-    debugger;
+  handleChange() {
+    this.props.onUpdateInput(0, {
+    });
   }
 }
 
 InputEditForm.propTypes = {
   label: PropTypes.string,
   required: PropTypes.bool,
-  placeholder: PropTypes.string
-}
+  placeholder: PropTypes.string,
+  type: PropTypes.string,
+  onUpdateInput: PropTypes.func.isRequired
+};

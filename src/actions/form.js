@@ -21,5 +21,5 @@ export function updateInput(index, inputProperties) {
     type: UPDATE_INPUT,
     index,
     inputProperties
-  }
+  };
 }

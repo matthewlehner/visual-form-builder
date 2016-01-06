@@ -20,10 +20,12 @@ export default class FormBuilder extends Component {
       <section className="visual-form-builder__body">
         <ComposedForm
           inputs={form}
-          onUpdateInput={(index, inputProperties) => onUpdateInput(index, inputProperties)}/>
+          onUpdateInput={(index, props) => onUpdateInput(index, props)}
+        />
         <InputTypeList
           inputTypes={inputTypes}
-          onAddInput={typeName => onAddInput(typeName)} />
+          onAddInput={typeName => onAddInput(typeName)}
+        />
       </section>
     );
   }

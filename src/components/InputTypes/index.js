@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from "react";
-import InputType from '../InputType';
+import InputType from "../InputType";
 
 export default class InputTypeList extends Component {
   render() {
-    let inputComponents = this.props.inputTypes.map( typeName => {
+    const inputComponents = this.props.inputTypes.map(typeName => {
       return (
         <InputType key={typeName}
-                   typeName={typeName}
-                   onAddInput={this.props.onAddInput}/>
+          typeName={typeName}
+          onAddInput={this.props.onAddInput}
+        />
       );
     });
 
@@ -21,8 +22,8 @@ export default class InputTypeList extends Component {
         <ul>
           <InputType
             key="firstAndLastName"
-            typeName="First Name/Last Name" />
-
+            typeName="First Name/Last Name"
+          />
         </ul>
       </div>
     );
@@ -32,5 +33,6 @@ export default class InputTypeList extends Component {
 InputTypeList.propTypes = {
   inputTypes: PropTypes.arrayOf(
     PropTypes.string.isRequired
-  )
-}
+  ),
+  onAddInput: PropTypes.func.isRequired
+};
