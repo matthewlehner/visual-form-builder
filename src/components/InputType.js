@@ -7,7 +7,7 @@ export default class InputType extends Component {
     return (
       <li style={{ cursor: "move" }}>
         {typeName}
-        <button onClick={e => this.handleClick(e)}>Add</button>
+        <button onClick={() => this.handleClick()}>Add</button>
       </li>
     );
   }

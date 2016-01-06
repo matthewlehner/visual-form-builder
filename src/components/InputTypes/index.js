@@ -3,11 +3,12 @@ import InputType from "../InputType";
 
 export default class InputTypeList extends Component {
   render() {
-    const inputComponents = this.props.inputTypes.map(typeName => {
+    const { inputTypes, onAddInput } = this.props;
+    const inputComponents = inputTypes.map(typeName => {
       return (
         <InputType key={typeName}
           typeName={typeName}
-          onAddInput={this.props.onAddInput}
+          onAddInput={onAddInput}
         />
       );
     });
@@ -23,6 +24,7 @@ export default class InputTypeList extends Component {
           <InputType
             key="firstAndLastName"
             typeName="First Name/Last Name"
+            onAddInput={onAddInput}
           />
         </ul>
       </div>

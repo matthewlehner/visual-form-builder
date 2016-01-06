@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import FormBuilder from "../components/FormBuilder";
-import { addInput, updateInput } from "../actions/form";
+import { addInput } from "../actions/form";
 
 function mapStateToProps(state) {
   return {
@@ -10,8 +10,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onAddInput: (typeName) => dispatch(addInput(typeName)),
-    onUpdateInput: (index, props) => dispatch(updateInput(index, props))
+    onAddInput: (typeName) => dispatch(addInput(typeName))
   };
 }
 

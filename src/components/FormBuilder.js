@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
-import InputTypeList from "components/InputTypes";
-import Workspace from "components/workspace";
+import InputTypeList from "../components/InputTypes";
+import WorkspaceContainer from "../containers/workspace-container";
 
 const inputTypes = [
   "Text",
@@ -14,14 +14,11 @@ const inputTypes = [
 
 export default class FormBuilder extends Component {
   render() {
-    const { form, onAddInput, onUpdateInput } = this.props;
+    const { onAddInput } = this.props;
 
     return (
       <section className="visual-form-builder__body">
-        <Workspace
-          inputs={form}
-          onUpdateInput={(index, props) => onUpdateInput(index, props)}
-        />
+        <WorkspaceContainer />
         <InputTypeList
           inputTypes={inputTypes}
           onAddInput={typeName => onAddInput(typeName)}
@@ -32,7 +29,5 @@ export default class FormBuilder extends Component {
 }
 
 FormBuilder.propTypes = {
-  form: PropTypes.array.isRequired,
-  onAddInput: PropTypes.func.isRequired,
-  onUpdateInput: PropTypes.func.isRequired
+  onAddInput: PropTypes.func.isRequired
 };

@@ -38,6 +38,6 @@ InputTemplate.propTypes = {
   label: PropTypes.string,
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  value: PropTypes.value,
-  required: PropTypes.required
+  value: PropTypes.string,
+  required: PropTypes.bool
 };
