@@ -41,7 +41,8 @@
   },
   "scripts": {
     "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --colors --hot --inline",
-    "compile": "NODE_ENV=production ./node_modules/.bin/webpack -p",
+    "compile": "NODE_ENV=production ./node_modules/.bin/webpack -p && cp index.html ./built",
+    "deploy": "npm run compile && surge -p ./built -d visual-form-builder.surge.sh",
     "lint": "eslint .",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js  --recursive",
     "test:watch": "npm run test -- --watch"
