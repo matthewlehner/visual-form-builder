@@ -53,6 +53,6 @@ describe("form reducer", () => {
     const action = { type: REMOVE_INPUT, index: 0 };
     const nextState = reducer(initialState, action);
 
-    expect(nextState.length).to.eq(0);
+    expect(nextState.length).to.equal(0);
   });
 });
