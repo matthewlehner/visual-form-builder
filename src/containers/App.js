@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FormBuilder from "../components/FormBuilder";
+import FormBuilderContainer from "../containers/FormBuilderContainer";
 
 export default class App extends Component {
   render() {
@@ -8,7 +8,7 @@ export default class App extends Component {
         <header>
           <h1>FormBuilder</h1>
         </header>
-        <FormBuilder />
+        <FormBuilderContainer />
       </div>
     );
   }
