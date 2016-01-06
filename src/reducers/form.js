@@ -31,7 +31,10 @@ export default function form(state = defaultState, action) {
       }];
 
     case REMOVE_INPUT:
-      return Object.assign({}, state);
+      return [
+        ...state.slice(0, action.index),
+        ...state.slice(action.index + 1)
+      ];
 
     case UPDATE_INPUT:
       return [

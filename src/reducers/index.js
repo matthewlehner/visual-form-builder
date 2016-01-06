@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
 import form from "./form";
+import workspace from "./workspace";
 
 const rootReducer = combineReducers({
-  form
+  form,
+  workspace
 });
 
 export default rootReducer;
