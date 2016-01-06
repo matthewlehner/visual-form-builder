@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import InputTypeList from "components/InputTypes";
-import ComposedForm from "components/ComposedForm";
+import Workspace from "components/workspace";
 
 const inputTypes = [
   "Text",
@@ -18,7 +18,7 @@ export default class FormBuilder extends Component {
 
     return (
       <section className="visual-form-builder__body">
-        <ComposedForm
+        <Workspace
           inputs={form}
           onUpdateInput={(index, props) => onUpdateInput(index, props)}
         />
