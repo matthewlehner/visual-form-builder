@@ -45,6 +45,7 @@ export default class InputEditForm extends Component {
         </label>
 
         <button>Save</button>
+        <button onClick={(e) => this.handleCancel(e) }>Cancel</button>
       </form>
     );
   }
@@ -53,6 +54,11 @@ export default class InputEditForm extends Component {
     const nextState = {};
     nextState[stateAttribute] = event.target.value;
     this.setState(nextState);
+  }
+
+  handleCancel(event) {
+    event.preventDefault();
+    this.props.cancel();
   }
 
   handleSubmit(event) {
@@ -66,5 +72,6 @@ InputEditForm.propTypes = {
   required: PropTypes.bool,
   placeholder: PropTypes.string,
   type: PropTypes.string,
-  onUpdateInput: PropTypes.func.isRequired
+  onUpdateInput: PropTypes.func.isRequired,
+  cancel: PropTypes.func.isRequired
 };

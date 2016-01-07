@@ -7,7 +7,7 @@ export default class InputTemplate extends Component {
 
   render() {
     const label = this.props.label ? <label>{this.props.label}</label> : undefined;
-    const { type, onEdit } = this.props;
+    const { type, onEdit, onRemove } = this.props;
     const className = `input-wrapper ${type}`;
 
     return (
@@ -18,6 +18,10 @@ export default class InputTemplate extends Component {
           onClick={ () => onEdit() }
           className="edit-btn"
         >Edit</button>
+        <button
+          onClick={ () => onRemove() }
+          className="remove-btn"
+        >Remove</button>
       </div>
     );
   }
@@ -29,5 +33,6 @@ InputTemplate.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
   required: PropTypes.bool,
-  onEdit: PropTypes.func.isRequired
+  onEdit: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
 };
