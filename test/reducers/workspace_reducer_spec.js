@@ -12,6 +12,7 @@ describe("workspace reducer", () => {
 
     const nextState = reducer(initialState, action);
 
-    expect(nextState.editing).to.equal(1);
+    expect(nextState.isEditing).to.equal(true);
+    expect(nextState.editingIndex).to.equal(1);
   });
 });

@@ -1,0 +1,19 @@
+.input-wrapper {
+  cursor: move;
+  position: relative;
+
+  &:hover {
+    background: $light-grey;
+
+    .edit-btn {
+      display: block;
+    }
+  }
+
+  .edit-btn {
+    // display: none;
+    position: absolute;
+    right: 0;
+    top: 50%;
+  }
+}

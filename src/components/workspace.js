@@ -3,16 +3,26 @@ import InputTemplate from "./InputTemplate";
 import InputEditForm from "./InputEditForm";
 
 export default class Workspace extends Component {
+  renderInputs(inputs) {
+    return inputs.map((input, index) => {
+      const onEdit = () => this.props.onEditInput(index);
+      return <InputTemplate {...input} key={index} onEdit={onEdit}/>;
+    });
+  }
+
+  renderEditForm(input, onUpdateInput) {
+    return <InputEditForm {...input} onUpdateInput={onUpdateInput} />;
+  }
+
   render() {
     const { inputs, onUpdateInput } = this.props;
-    const inputComponents = inputs.map((input, index) => {
-      return <InputTemplate {...input} style={{ cursor: "move" }} key={index}/>;
-    });
+    const { isEditing, editingIndex } = this.props.workspace;
 
     return (
       <div className="composed-form">
-        {inputComponents}
-        <InputEditForm {...inputs[0]} onUpdateInput={onUpdateInput} />
+        { isEditing ?
+          this.renderEditForm(inputs[editingIndex], onUpdateInput) :
+          this.renderInputs(inputs) }
       </div>
     );
   }
@@ -20,5 +30,7 @@ export default class Workspace extends Component {
 
 Workspace.propTypes = {
   onUpdateInput: PropTypes.func.isRequired,
-  inputs: PropTypes.array.isRequired
+  onEditInput: PropTypes.func.isRequired,
+  inputs: PropTypes.array.isRequired,
+  workspace: PropTypes.object.isRequired
 };

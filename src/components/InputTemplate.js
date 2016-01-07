@@ -1,34 +1,23 @@
 import React, { Component, PropTypes } from "react";
 
 export default class InputTemplate extends Component {
-  mouseOver() {
-    this.setState({ hover: true });
-  }
-
-  mouseOut() {
-    this.setState({ hover: false });
+  handleEditClick(event) {
+    event.preventDefault();
   }
 
   render() {
-    const hover = this.state && this.state.hover;
     const label = this.props.label ? <label>{this.props.label}</label> : undefined;
+    const { type, onEdit } = this.props;
+    const className = `input-wrapper ${type}`;
 
     return (
-      <div
-        className="input-wrapper"
-        style={{
-          background: (hover ? "green" : null)
-        }}
-        onMouseOver={ () => this.mouseOver() }
-        onMouseOut={ () => this.mouseOut() }
-      >
+      <div className={className}>
         {label}
-        <input
-          type={this.props.type}
-          placeholder={this.props.placeholder}
-          value={this.props.value}
-          required={this.props.required}
-        />
+        <input {...this.props} />
+        <button
+          onClick={ () => onEdit() }
+          className="edit-btn"
+        >Edit</button>
       </div>
     );
   }
@@ -39,5 +28,6 @@ InputTemplate.propTypes = {
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string,
-  required: PropTypes.bool
+  required: PropTypes.bool,
+  onEdit: PropTypes.func.isRequired
 };
