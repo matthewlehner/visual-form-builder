@@ -14,7 +14,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     onAddInput: (typeName) => dispatch(addInput(typeName)),
-    onUpdateInput: (index, props) => dispatch(updateInput(index, props)),
+    onUpdateInput: (index, props) => {
+      dispatch(updateInput(index, props));
+      dispatch(setEditing(false));
+    },
     onEditInput: (index) => dispatch(setEditing(index))
   };
 }
