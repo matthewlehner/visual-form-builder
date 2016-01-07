@@ -1,20 +1,28 @@
 import React, { Component, PropTypes } from "react";
 
 export default class InputEditForm extends Component {
+  componentWillMount() {
+    const { label, placeholder, required } = this.props;
+    this.setState({ label, placeholder, required });
+  }
+
   render() {
+    const { type } = this.props;
+    const { label, placeholder, required } = this.state;
+
     return (
-      <form>
+      <form onSubmit={(event) => this.handleSubmit(event)}>
         <hr/>
         <header>
-          <h3>Editing a {this.props.type} field</h3>
+          <h3>Editing a {type} field</h3>
         </header>
 
         <label>
           Label<br/>
           <input
             type="text"
-            onChange={e => this.handleChange(e)}
-            value={this.props.label}
+            onChange={e => this.handleChange(e, "label")}
+            value={label}
           />
         </label>
 
@@ -22,8 +30,8 @@ export default class InputEditForm extends Component {
           Placeholder<br/>
           <input
             type="text"
-            onChange={e => this.handleChange(e)}
-            value={this.props.placeholder}
+            onChange={e => this.handleChange(e, "placeholder")}
+            value={placeholder}
           />
         </label>
 
@@ -31,17 +39,25 @@ export default class InputEditForm extends Component {
           Required field?<br/>
           <input
             type="checkbox"
-            onChange={e => this.handleChange(e)}
-            checked={this.props.required}
+            onChange={e => this.handleChange(e, "required")}
+            checked={required}
           />
         </label>
+
+        <button>Save</button>
       </form>
     );
   }
 
-  handleChange() {
-    this.props.onUpdateInput(0, {
-    });
+  handleChange(event, stateAttribute) {
+    const nextState = {};
+    nextState[stateAttribute] = event.target.value;
+    this.setState(nextState);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.onUpdateInput(this.state);
   }
 }
 

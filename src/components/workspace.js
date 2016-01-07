@@ -10,8 +10,9 @@ export default class Workspace extends Component {
     });
   }
 
-  renderEditForm(input, onUpdateInput) {
-    return <InputEditForm {...input} onUpdateInput={onUpdateInput} />;
+  renderEditForm(input, onUpdateInput, index) {
+    const updateInput = (inputProps) => onUpdateInput(index, inputProps);
+    return <InputEditForm {...input} onUpdateInput={updateInput} />;
   }
 
   render() {
@@ -21,7 +22,7 @@ export default class Workspace extends Component {
     return (
       <div className="composed-form">
         { isEditing ?
-          this.renderEditForm(inputs[editingIndex], onUpdateInput) :
+          this.renderEditForm(inputs[editingIndex], onUpdateInput, editingIndex) :
           this.renderInputs(inputs) }
       </div>
     );
