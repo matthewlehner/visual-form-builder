@@ -2,18 +2,14 @@ import React, { Component, PropTypes } from "react";
 
 export default class InputType extends Component {
   render() {
-    const { typeName } = this.props;
+    const { typeName, onAddInput } = this.props;
 
     return (
       <li style={{ cursor: "move" }}>
         {typeName}
-        <button onClick={() => this.handleClick()}>Add</button>
+        <button onClick={() => onAddInput(typeName)}>Add</button>
       </li>
     );
-  }
-
-  handleClick() {
-    this.props.onAddInput(this.props.typeName);
   }
 }
 
