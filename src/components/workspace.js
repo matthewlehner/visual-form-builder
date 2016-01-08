@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from "react";
 import HTML5Backend from "react-dnd-html5-backend";
 import { DragDropContext } from "react-dnd";
 
+import Sortable from "./sortable";
 import InputTemplate from "./InputTemplate";
 import InputEditForm from "./InputEditForm";
 
@@ -9,12 +10,16 @@ class Workspace extends Component {
   renderInputs(inputs) {
     return inputs.map((input, index) => {
       const props = Object.assign({}, input);
+      const moveInput = (i, nextIndex) => this.props.onReorderInputs(i, nextIndex);
       props.onEdit = () => this.props.onEditInput(index);
       props.onRemove = () => this.props.onRemoveInput(index);
-      props.onReorderInputs = (i, nextIndex) => this.props.onReorderInputs(i, nextIndex);
       props.index = index;
 
-      return <InputTemplate {...props} key={props.id} />;
+      return (
+        <Sortable key={props.id} index={index} id={input.id} moveInput={moveInput} >
+          <InputTemplate {...props}/>
+        </Sortable>
+      );
     });
   }
 
