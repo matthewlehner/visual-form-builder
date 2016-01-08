@@ -1,4 +1,4 @@
-import { ADD_INPUT, REMOVE_INPUT, UPDATE_INPUT } from "../actions/form";
+import { ADD_INPUT, REMOVE_INPUT, UPDATE_INPUT, REORDER_INPUTS } from "../actions/form";
 
 const defaultState = [{
   type: "text",
@@ -42,6 +42,14 @@ export default function form(state = defaultState, action) {
         Object.assign({}, state[action.index], action.inputProperties),
         ...state.slice(action.index + 1)
       ];
+    case REORDER_INPUTS:
+      const item = state[action.currentIndex];
+      const nextState = [
+        ...state.slice(0, action.currentIndex),
+        ...state.slice(action.currentIndex + 1)
+      ];
+      nextState.splice(action.nextIndex, 0, item);
+      return nextState;
     default:
       return state;
   }

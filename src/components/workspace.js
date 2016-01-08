@@ -1,13 +1,20 @@
 import React, { Component, PropTypes } from "react";
+import HTML5Backend from "react-dnd-html5-backend";
+import { DragDropContext } from "react-dnd";
+
 import InputTemplate from "./InputTemplate";
 import InputEditForm from "./InputEditForm";
 
-export default class Workspace extends Component {
+class Workspace extends Component {
   renderInputs(inputs) {
     return inputs.map((input, index) => {
-      const edit = () => this.props.onEditInput(index);
-      const remove = () => this.props.onRemoveInput(index);
-      return <InputTemplate {...input} key={index} onEdit={edit} onRemove={remove}/>;
+      const props = input;
+      props.onEdit = () => this.props.onEditInput(index);
+      props.onRemove = () => this.props.onRemoveInput(index);
+      props.onReorderInputs = (index, nextIndex) => this.props.onReorderInputs(index, nextIndex);
+      props.index = index;
+
+      return <InputTemplate {...props} key={index} />;
     });
   }
 
@@ -39,6 +46,9 @@ Workspace.propTypes = {
   onRemoveInput: PropTypes.func.isRequired,
   onUpdateInput: PropTypes.func.isRequired,
   onEditInput: PropTypes.func.isRequired,
+  onReorderInputs: PropTypes.func.isRequired,
   inputs: PropTypes.array.isRequired,
   workspace: PropTypes.object.isRequired
 };
+
+export default DragDropContext(HTML5Backend)(Workspace);

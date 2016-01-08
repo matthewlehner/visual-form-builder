@@ -4,22 +4,17 @@
 
   &:hover {
     background: $light-grey;
-
-    .edit-btn {
-      display: block;
-    }
   }
 
   .edit-btn {
-    // display: none;
     position: absolute;
-    right: 0;
+    right: 60px;
     top: 0;
   }
 
   .remove-btn {
     position: absolute;
     right: 0;
-    top: 20px;
+    top: 0;
   }
 }

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
 import Workspace from "../components/workspace";
-import { addInput, updateInput, removeInput } from "../actions/form";
+import { addInput, updateInput, removeInput, reorderInputs } from "../actions/form";
 import { setEditing, stopEditing } from "../actions/workspace";
 
 function mapStateToProps(state) {
@@ -17,7 +17,8 @@ function mapDispatchToProps(dispatch) {
     onUpdateInput: (index, props) => dispatch(updateInput(index, props)),
     onRemoveInput: (index) => dispatch(removeInput(index)),
     onEditInput: (index) => dispatch(setEditing(index)),
-    onStopEditInput: () => dispatch(stopEditing())
+    onStopEditInput: () => dispatch(stopEditing()),
+    onReorderInputs: (currentIndex, nextIndex) => dispatch(reorderInputs(currentIndex, nextIndex))
   };
 }
 
