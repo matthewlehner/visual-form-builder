@@ -1,58 +1,39 @@
 import React, { Component, PropTypes } from "react";
-import { findDOMNode } from "react-dom";
 import { DragSource, DropTarget } from "react-dnd";
 
 const inputTemplateSource = {
   beginDrag(props) {
+    // These are attributes passed to the `monitor` object
     return {
       id: props.id,
-      index: props.index
+      index: props.index,
+      originalIndex: props.index
     };
+  },
+
+  endDrag(props, monitor) {
+    const { index, originalIndex } = monitor.getItem();
+    const didDrop = monitor.didDrop();
+
+    if (!didDrop) {
+      props.onReorderInputs(index, originalIndex);
+    }
   }
 };
 
 const inputTemplateTarget = {
-  hover(props, monitor, component) {
-    const dragIndex = monitor.getItem().index;
-    const hoverIndex = props.index;
+  hover(props, monitor) {
+    const { id: draggedId, index: dragIndex } = monitor.getItem();
+    const { id: overId, index: overIndex } = props;
 
-    // Don't replace items with themselves
-    if (dragIndex === hoverIndex) {
-      return;
+    if (draggedId !== overId) {
+      props.onReorderInputs(dragIndex, overIndex);
+
+      // Note: we're mutating the monitor item here!
+      // Generally it's better to avoid mutations, but it's okay here for the
+      // sake of performance to avoid expensive index searches.
+      monitor.getItem().index = overIndex; // eslint-disable-line no-param-reassign
     }
-
-    // Determine rectangle on screen
-    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
-
-    // Get a vertical middle
-    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-
-    // Determine mouse position
-    const clientOffset = monitor.getClientOffset();
-
-    // Get pixels to the top
-    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-
-    // Only perform the move when the mouse has crossed half or the items height
-    // When dragging downwards, only move when the cursor is below 50%
-    // When dragging upwards, only move when the cursor is above 50%;
-
-    // Dragging downwards
-    if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-      return;
-    }
-
-    // Dragging upwards
-    if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-      return;
-    }
-
-    props.onReorderInputs(dragIndex, hoverIndex);
-
-    // Note: we're mutating the monitor item here!
-    // Generally it's better to avoid mutations, but it's okay here for the sake
-    // of performance to avoid expensive index searches.
-    monitor.getItem().index = hoverIndex; // eslint-disable-line no-param-reassign
   }
 };
 
@@ -94,7 +75,7 @@ InputTemplate.propTypes = {
   onRemove: PropTypes.func.isRequired,
   connectDropTarget: PropTypes.func.isRequired,
   connectDragSource: PropTypes.func.isRequired,
-  isDragging: PropTypes.func.isRequired
+  isDragging: PropTypes.bool.isRequired
 };
 
 const type = "INPUT";
