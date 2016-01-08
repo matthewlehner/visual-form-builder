@@ -8,13 +8,13 @@ import InputEditForm from "./InputEditForm";
 class Workspace extends Component {
   renderInputs(inputs) {
     return inputs.map((input, index) => {
-      const props = input;
+      const props = Object.assign({}, input);
       props.onEdit = () => this.props.onEditInput(index);
       props.onRemove = () => this.props.onRemoveInput(index);
-      props.onReorderInputs = (index, nextIndex) => this.props.onReorderInputs(index, nextIndex);
+      props.onReorderInputs = (i, nextIndex) => this.props.onReorderInputs(i, nextIndex);
       props.index = index;
 
-      return <InputTemplate {...props} key={index} />;
+      return <InputTemplate {...props} key={props.id} />;
     });
   }
 

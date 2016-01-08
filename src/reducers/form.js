@@ -1,22 +1,28 @@
+import { randomId } from "../helpers";
 import { ADD_INPUT, REMOVE_INPUT, UPDATE_INPUT, REORDER_INPUTS } from "../actions/form";
 
 const defaultState = [{
+  id: randomId(),
   type: "text",
   label: "Name",
   required: true,
   placeholder: "Enter your name"
 }, {
+  id: randomId(),
   type: "email",
   label: "Email",
   required: true,
   placeholder: "Your email address, please"
 }, {
+  id: randomId(),
   type: "tel",
   placeholder: "Telephone Number!"
 }, {
+  id: randomId(),
   type: "checkbox",
   label: "You can contact me by email"
 }, {
+  id: randomId(),
   type: "submit",
   value: "Send me!"
 }];
@@ -25,6 +31,7 @@ export default function form(state = defaultState, action) {
   switch (action.type) {
     case ADD_INPUT:
       return [...state, {
+        id: randomId(),
         type: action.inputType,
         label: action.inputType,
         placeholder: `new ${action.inputType}`,
