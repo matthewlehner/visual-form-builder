@@ -9,6 +9,7 @@
     "quotes": [1, "double"],
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
+    "react/jsx-no-bind": 0,
     "react/react-in-jsx-scope": 2,
     "react/sort-comp": 0,
     "comma-dangle": 0,
