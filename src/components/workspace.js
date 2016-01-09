@@ -7,15 +7,17 @@ import InputEditForm from "./InputEditForm";
 class Workspace extends Component {
   renderInputs(inputs) {
     return inputs.map((input, index) => {
-      const props = Object.assign({}, input);
+      const inputProps = Object.assign({
+        index,
+        onEdit: () => this.props.onEditInput(index),
+        onRemove: () => this.props.onRemoveInput(index)
+      }, input);
+
       const moveInput = (i, nextIndex) => this.props.onReorderInputs(i, nextIndex);
-      props.onEdit = () => this.props.onEditInput(index);
-      props.onRemove = () => this.props.onRemoveInput(index);
-      props.index = index;
 
       return (
-        <Sortable key={props.id} index={index} id={input.id} moveInput={moveInput} >
-          <InputTemplate {...props}/>
+        <Sortable key={input.id} index={index} id={input.id} moveInput={moveInput}>
+          <InputTemplate {...inputProps}/>
         </Sortable>
       );
     });
