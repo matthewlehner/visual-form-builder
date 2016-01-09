@@ -2,10 +2,6 @@
   cursor: move;
   position: relative;
 
-  &:hover {
-    background: $light-grey;
-  }
-
   .edit-btn {
     position: absolute;
     right: 60px;
@@ -16,5 +12,11 @@
     position: absolute;
     right: 0;
     top: 0;
+  }
+}
+
+.form-building-blocks {
+  [draggable="true"] {
+    cursor: move;
   }
 }
