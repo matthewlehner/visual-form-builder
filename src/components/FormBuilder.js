@@ -1,4 +1,7 @@
 import React, { Component, PropTypes } from "react";
+import HTML5Backend from "react-dnd-html5-backend";
+import { DragDropContext } from "react-dnd";
+
 import InputTypeList from "../components/InputTypes";
 import WorkspaceContainer from "../containers/workspace-container";
 
@@ -31,3 +34,5 @@ export default class FormBuilder extends Component {
 FormBuilder.propTypes = {
   onAddInput: PropTypes.func.isRequired
 };
+
+export default DragDropContext(HTML5Backend)(FormBuilder);

@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from "react";
-import HTML5Backend from "react-dnd-html5-backend";
-import { DragDropContext } from "react-dnd";
 
 import Sortable from "./sortable";
 import InputTemplate from "./InputTemplate";
@@ -56,4 +54,4 @@ Workspace.propTypes = {
   workspace: PropTypes.object.isRequired
 };
 
-export default DragDropContext(HTML5Backend)(Workspace);
+export default Workspace;

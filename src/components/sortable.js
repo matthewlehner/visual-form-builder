@@ -27,9 +27,8 @@ const inputTemplateTarget = {
     const { id: draggedId, index: dragIndex } = monitor.getItem();
     const { id: overId, index: overIndex } = props;
 
-    if (draggedId !== overId) {
+    if (draggedId !== overId && dragIndex !== overIndex) {
       props.moveInput(dragIndex, overIndex);
-
       // Note: we're mutating the monitor item here!
       // Generally it's better to avoid mutations, but it's okay here for the
       // sake of performance to avoid expensive index searches.

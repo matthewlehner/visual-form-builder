@@ -1,15 +1,12 @@
 import React, { Component, PropTypes } from "react";
-import InputType from "../InputType";
+import DraggableInputType from "../../containers/draggable-input-type-template";
 
 export default class InputTypeList extends Component {
   render() {
-    const { inputTypes, onAddInput } = this.props;
+    const { inputTypes } = this.props;
     const inputComponents = inputTypes.map(typeName => {
       return (
-        <InputType key={typeName}
-          typeName={typeName}
-          onAddInput={onAddInput}
-        />
+        <DraggableInputType key={typeName} typeName={typeName} />
       );
     });
 
@@ -19,14 +16,10 @@ export default class InputTypeList extends Component {
         <ul>
           {inputComponents}
         </ul>
-        <h3>Group Inputs</h3>
-        <ul>
-          <InputType
-            key="firstAndLastName"
-            typeName="First Name/Last Name"
-            onAddInput={onAddInput}
-          />
-        </ul>
+        {/* <h3>Group Inputs</h3> */}
+        {/* <ul> */}
+        {/*   <InputType key="firstAndLastName" typeName="First Name/Last Name" /> */}
+        {/* </ul> */}
       </div>
     );
   }
