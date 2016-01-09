@@ -13,5 +13,6 @@ export default class InputType extends Component {
 }
 
 InputType.propTypes = {
+  connectDragSource: PropTypes.func.isRequired,
   typeName: PropTypes.string.isRequired
 };
