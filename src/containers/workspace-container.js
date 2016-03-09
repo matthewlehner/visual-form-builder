@@ -15,10 +15,7 @@ function mapDispatchToProps(dispatch) {
   return {
     onAddInput: (typeName) => dispatch(addInput(typeName)),
     onUpdateInput: (index, props) => dispatch(updateInput(index, props)),
-    onRemoveInput: (index) => dispatch(removeInput(index)),
-    onEditInput: (index) => dispatch(setEditing(index)),
     onStopEditInput: () => dispatch(stopEditing()),
-    onReorderInputs: (currentIndex, nextIndex) => dispatch(reorderInputs(currentIndex, nextIndex))
   };
 }
 

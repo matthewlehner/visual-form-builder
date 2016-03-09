@@ -2,29 +2,11 @@ import React, { Component, PropTypes } from "react";
 import HTML5Backend from "react-dnd-html5-backend";
 import { DragDropContext } from "react-dnd";
 
+import FormContentContainer from "../containers/form-content";
 import Sortable from "./sortable";
-import InputTemplate from "./InputTemplate";
 import InputEditForm from "./InputEditForm";
 
 class Workspace extends Component {
-  renderInputs(inputs) {
-    return inputs.map((input, index) => {
-      const inputProps = Object.assign({
-        index,
-        onEdit: () => this.props.onEditInput(index),
-        onRemove: () => this.props.onRemoveInput(index)
-      }, input);
-
-      const moveInput = (i, nextIndex) => this.props.onReorderInputs(i, nextIndex);
-
-      return (
-        <Sortable key={input.id} index={index} id={input.id} moveInput={moveInput}>
-          <InputTemplate {...inputProps}/>
-        </Sortable>
-      );
-    });
-  }
-
   renderEditForm(input, index) {
     const updateInput = (inputProps) => {
       this.props.onUpdateInput(index, inputProps);
@@ -40,9 +22,10 @@ class Workspace extends Component {
 
     return (
       <div className="composed-form">
+        <FormContentContainer />
         { isEditing ?
           this.renderEditForm(inputs[editingIndex], editingIndex) :
-          this.renderInputs(inputs) }
+          null }
       </div>
     );
   }
@@ -50,10 +33,7 @@ class Workspace extends Component {
 
 Workspace.propTypes = {
   onStopEditInput: PropTypes.func.isRequired,
-  onRemoveInput: PropTypes.func.isRequired,
   onUpdateInput: PropTypes.func.isRequired,
-  onEditInput: PropTypes.func.isRequired,
-  onReorderInputs: PropTypes.func.isRequired,
   inputs: PropTypes.array.isRequired,
   workspace: PropTypes.object.isRequired
 };
