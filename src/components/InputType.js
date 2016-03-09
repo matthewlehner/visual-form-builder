@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from "react";
 
 export default class InputType extends Component {
   render() {
-    const { typeName, connectDragSource } = this.props;
+    const { typeName } = this.props;
 
-    return connectDragSource(
-      <li>
+    return (
+      <li onClick={() => this.props.onClick()}>
         {typeName}
       </li>
     );
@@ -13,6 +13,6 @@ export default class InputType extends Component {
 }
 
 InputType.propTypes = {
-  connectDragSource: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   typeName: PropTypes.string.isRequired
 };
