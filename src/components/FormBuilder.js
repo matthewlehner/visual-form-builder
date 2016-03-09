@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 
-import InputTypeList from "../components/InputTypes";
+import InputTypeList from "./input-type-list";
 import WorkspaceContainer from "../containers/workspace-container";
 
 const inputTypes = [
