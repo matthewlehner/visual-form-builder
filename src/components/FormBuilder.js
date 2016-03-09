@@ -21,4 +21,6 @@ export default class FormBuilder extends Component {
   }
 }
 
-export default FormBuilder;
+FormBuilder.propTypes = {
+  isEditing: PropTypes.bool.isRequired
+};
