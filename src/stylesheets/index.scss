@@ -26,9 +26,18 @@ body {
 }
 
 .input-wrapper {
-  label,
-  input {
-    display: block;
+  border: 1px solid #9b9b9b;
+  border-radius: 4px;
+  height: 50px;
+  margin-bottom: 5px;
+
+  .input-type {
+    float: left;
+    width: 80px;
+  }
+
+  .input-label {
+    margin-left: 80px;
   }
 }
 

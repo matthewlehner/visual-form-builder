@@ -8,8 +8,8 @@ class InputTemplate extends Component {
 
     return (
       <div className={className}>
-        {label}
-        <input {...this.props} />
+        <div className="input-type">Type:<br/>{type}</div>
+        <div className="input-label">{label}</div>
         <button
           onClick={onEdit}
           className="edit-btn"

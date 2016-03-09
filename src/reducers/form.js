@@ -21,10 +21,6 @@ const defaultState = [{
   id: randomId(),
   type: "checkbox",
   label: "You can contact me by email"
-}, {
-  id: randomId(),
-  type: "submit",
-  value: "Send me!"
 }];
 
 export default function form(state = defaultState, action) {
