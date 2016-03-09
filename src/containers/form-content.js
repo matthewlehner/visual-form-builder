@@ -7,8 +7,9 @@ import FormContent from "../components/form-content";
 
 function mapStateToProps(state) {
   return {
-    inputs: state.form
-  }
+    inputs: state.form,
+    isEditing: state.workspace.isEditing
+  };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -16,7 +17,7 @@ function mapDispatchToProps(dispatch) {
     onReorderInputs: (currentIndex, nextIndex) => dispatch(reorderInputs(currentIndex, nextIndex)),
     onEditInput: (index) => dispatch(setEditing(index)),
     onRemoveInput: (index) => dispatch(removeInput(index))
-  }
+  };
 }
 
 export default connect(

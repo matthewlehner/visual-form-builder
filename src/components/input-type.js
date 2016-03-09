@@ -6,7 +6,7 @@ export default class InputType extends Component {
 
     return (
       <li onClick={() => this.props.onClick()}>
-        {typeName}
+        {typeName} Field
       </li>
     );
   }

@@ -1,26 +1,66 @@
 import React, { Component, PropTypes } from "react";
-import InputType from "./input-type";
+import { connect } from "react-redux";
 
-export default class InputTypeList extends Component {
+import InputType from "./input-type";
+import { addInput } from "../actions/form";
+
+const inputTypes = [
+  "Text",
+  "Checkbox",
+  "Date",
+  "Email",
+  "Password",
+  "Phone Number",
+  "Birthday"
+];
+
+class InputTypeList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isAdding: false };
+  }
+
+  openTools() {
+    if (!this.state.isAdding) {
+      this.setState({ isAdding: true });
+    }
+  }
+
+  closeTools() {
+    if (this.state.isAdding) {
+      this.setState({ isAdding: false });
+    }
+  }
+
   render() {
-    const { inputTypes, onAddInput } = this.props;
+    const { onClick } = this.props;
     const inputComponents = inputTypes.map(typeName => {
-      const onClick = () => onAddInput(typeName);
+      const handleClick = () => {
+        onClick(typeName);
+        this.closeTools();
+      };
       return (
-        <InputType key={typeName} typeName={typeName} onClick={onClick} />
+        <InputType key={typeName} typeName={typeName} onClick={handleClick} />
       );
     });
 
+    const hiddenUnlessAdding = this.state.isAdding ? {} : { display: "none" };
+    const closeButton = (
+      <div onClick={() => this.closeTools()} style={hiddenUnlessAdding} className="close-button">
+        &times;
+      </div>
+    );
+    const inputList = (
+      <ul style={hiddenUnlessAdding}>
+        {inputComponents}
+      </ul>
+    );
+
     return (
       <div className="form-building-blocks">
-        <h3>Single inputs</h3>
-        <ul>
-          {inputComponents}
-        </ul>
-        {/* <h3>Group Inputs</h3> */}
-        {/* <ul> */}
-        {/*   <InputType key="firstAndLastName" typeName="First Name/Last Name" /> */}
-        {/* </ul> */}
+        <h4 onClick={() => this.openTools()}>Add Form Content</h4>
+        {closeButton}
+        {inputList}
       </div>
     );
   }
@@ -30,5 +70,16 @@ InputTypeList.propTypes = {
   inputTypes: PropTypes.arrayOf(
     PropTypes.string.isRequired
   ),
-  onAddInput: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired
 };
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onClick: (typeName) => dispatch(addInput(typeName))
+  };
+}
+
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(InputTypeList);

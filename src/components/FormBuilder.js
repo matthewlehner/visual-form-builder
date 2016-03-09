@@ -1,36 +1,24 @@
 import React, { Component, PropTypes } from "react";
 
+import FormContentContainer from "../containers/form-content";
+import InputEditFormContainer from "../containers/input-edit-form";
 import InputTypeList from "./input-type-list";
-import WorkspaceContainer from "../containers/workspace-container";
-
-const inputTypes = [
-  "Text",
-  "Checkbox",
-  "Date",
-  "Email",
-  "Password",
-  "Phone Number",
-  "Birthday"
-];
 
 export default class FormBuilder extends Component {
   render() {
-    const { onAddInput } = this.props;
+    const { isEditing } = this.props;
 
     return (
       <section className="visual-form-builder__body">
-        <WorkspaceContainer />
-        <InputTypeList
-          inputTypes={inputTypes}
-          onAddInput={typeName => onAddInput(typeName)}
-        />
+        { isEditing ?
+          <InputEditFormContainer /> :
+          <div>
+            <FormContentContainer />
+            <InputTypeList />
+          </div> }
       </section>
     );
   }
 }
-
-FormBuilder.propTypes = {
-  onAddInput: PropTypes.func.isRequired
-};
 
 export default FormBuilder;

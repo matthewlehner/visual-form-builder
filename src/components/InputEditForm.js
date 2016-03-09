@@ -2,17 +2,16 @@ import React, { Component, PropTypes } from "react";
 
 export default class InputEditForm extends Component {
   componentWillMount() {
-    const { label, placeholder, required } = this.props;
+    const { label, placeholder, required } = this.props.input;
     this.setState({ label, placeholder, required });
   }
 
   render() {
-    const { type } = this.props;
+    const { type } = this.props.input;
     const { label, placeholder, required } = this.state;
 
     return (
       <form onSubmit={(event) => this.handleSubmit(event)}>
-        <hr/>
         <header>
           <h3>Editing a {type} field</h3>
         </header>
@@ -58,20 +57,18 @@ export default class InputEditForm extends Component {
 
   handleCancel(event) {
     event.preventDefault();
-    this.props.cancel();
+    this.props.onCancel();
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.onUpdateInput(this.state);
+    this.props.onSubmit(this.props.inputIndex, this.state);
   }
 }
 
 InputEditForm.propTypes = {
-  label: PropTypes.string,
-  required: PropTypes.bool,
-  placeholder: PropTypes.string,
-  type: PropTypes.string,
-  onUpdateInput: PropTypes.func.isRequired,
-  cancel: PropTypes.func.isRequired
+  input: PropTypes.object.isRequired,
+  inputIndex: PropTypes.number.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired
 };

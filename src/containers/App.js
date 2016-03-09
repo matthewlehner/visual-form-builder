@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FormBuilderContainer from "../containers/FormBuilderContainer";
+import FormBuilderContainer from "./FormBuilderContainer";
 
 export default class App extends Component {
   render() {

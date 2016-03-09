@@ -1,35 +1,48 @@
-@import "bourbon/app/assets/stylesheets/bourbon";
 @import "variables";
-@import "input-template";
 
 body {
   font-family: sans-serif;
 }
 
-.visual-form-builder {
-  @include display(flex);
-  @include flex-direction(column);
-}
-
 .visual-form-builder__body {
-  @include display(flex);
-  @include flex(1);
+  max-width: 400px;
 }
 
-.form-building-blocks,
-.composed-form {
-  @include flex(1);
-}
+.form-building-blocks {
+  border: 1px solid #9b9b9b;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  min-height: 50px;
+  position: relative;
 
-.composed-form {
-  margin-right: 1rem;
+  h4,
+  li {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .close-button {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  [draggable="true"] {
+    cursor: move;
+  }
 }
 
 .input-wrapper {
   border: 1px solid #9b9b9b;
   border-radius: 4px;
+  cursor: move;
   height: 50px;
   margin-bottom: 5px;
+  position: relative;
 
   .input-type {
     float: left;
@@ -39,26 +52,16 @@ body {
   .input-label {
     margin-left: 80px;
   }
-}
 
-label {
-  display: block;
-  margin-bottom: 1rem;
-}
-
-input {
-  margin: 0.5rem 0;
-  padding: 0.4rem;
-
-  &:required {
-    border: 1px solid #000;
+  .edit-btn {
+    position: absolute;
+    right: 60px;
+    top: 0;
   }
 
-  &[type='text'],
-  &[type='date'],
-  &[type='password'],
-  &[type='tel'],
-  &[type='email'] {
-    width: 400px;
+  .remove-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 }
