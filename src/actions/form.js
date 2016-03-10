@@ -2,6 +2,7 @@ export const ADD_INPUT = "ADD_INPUT";
 export const REMOVE_INPUT = "REMOVE_INPUT";
 export const UPDATE_INPUT = "UPDATE_INPUT";
 export const REORDER_INPUTS = "REORDER_INPUTS";
+export const REPLACE_INPUTS = "REPLACE_INPUTS";
 
 export function addInput(inputType) {
   return {
@@ -30,5 +31,12 @@ export function reorderInputs(currentIndex, nextIndex) {
     type: REORDER_INPUTS,
     currentIndex,
     nextIndex
+  };
+}
+
+export function replaceInputs(formData) {
+  return {
+    type: REPLACE_INPUTS,
+    formData
   };
 }

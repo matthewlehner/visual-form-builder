@@ -8,5 +8,31 @@
     </div>
     <script src="/static/vendor.bundle.js"></script>
     <script src="/static/bundle.js"></script>
+    <script>
+      var formState = [{
+        type: "text",
+        label: "Name",
+        required: true,
+        placeholder: "Enter your name"
+      }, {
+        type: "email",
+        label: "Email",
+        required: true,
+        placeholder: "Your email address, please"
+      }, {
+        type: "tel",
+        placeholder: "Telephone Number!"
+      }, {
+        type: "checkbox",
+        label: "You can contact me by email"
+      }];
+
+      var rootEl = document.getElementById("root");
+
+      FormBuilder.setInitialState([]);
+      FormBuilder.render(rootEl);
+      FormBuilder.subscribe(function(state) { console.table(state) });
+      var x = function() {FormBuilder.setState(formState)};
+    </script>
   </body>
 </html>

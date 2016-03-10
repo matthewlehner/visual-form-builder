@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import reducer from "../../src/reducers/form";
-import { ADD_INPUT, UPDATE_INPUT, REMOVE_INPUT, REORDER_INPUTS } from "../../src/actions/form";
+import { ADD_INPUT, UPDATE_INPUT, REMOVE_INPUT, REORDER_INPUTS, REPLACE_INPUTS } from "../../src/actions/form";
 
 describe("form reducer", () => {
   it("handles ADD_INPUT", () => {
@@ -67,6 +67,20 @@ describe("form reducer", () => {
 
     expect(nextState).to.eql(
       [{ name: "item2" }, { name: "item1" }, { name: "item3" }]
+    );
+  });
+
+  it("handles REPLACE_INPUTS", () => {
+    const initialState = [{ name: "item1" }, { name: "item2" }, { name: "item3" }];
+    const action = {
+      type: REPLACE_INPUTS,
+      formData: [{ name: 'hi'}]
+    }
+
+    const nextState = reducer(initialState, action);
+
+    expect(nextState).to.eql(
+      [{ name: 'hi'}]
     );
   });
 });

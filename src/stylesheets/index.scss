@@ -6,6 +6,28 @@ body {
 
 .visual-form-builder__body {
   max-width: 400px;
+
+  label {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  input {
+    margin: 0.5rem 0;
+    padding: 0.4rem;
+
+    &:required {
+      border: 1px solid #000;
+    }
+
+    &[type='text'],
+    &[type='date'],
+    &[type='password'],
+    &[type='tel'],
+    &[type='email'] {
+      width: 400px;
+    }
+  }
 }
 
 .form-building-blocks {

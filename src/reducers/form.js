@@ -1,29 +1,13 @@
 import { randomId } from "../helpers";
-import { ADD_INPUT, REMOVE_INPUT, UPDATE_INPUT, REORDER_INPUTS } from "../actions/form";
+import {
+  ADD_INPUT,
+  REMOVE_INPUT,
+  UPDATE_INPUT,
+  REORDER_INPUTS,
+  REPLACE_INPUTS
+} from "../actions/form";
 
-const defaultState = [{
-  id: randomId(),
-  type: "text",
-  label: "Name",
-  required: true,
-  placeholder: "Enter your name"
-}, {
-  id: randomId(),
-  type: "email",
-  label: "Email",
-  required: true,
-  placeholder: "Your email address, please"
-}, {
-  id: randomId(),
-  type: "tel",
-  placeholder: "Telephone Number!"
-}, {
-  id: randomId(),
-  type: "checkbox",
-  label: "You can contact me by email"
-}];
-
-export default function form(state = defaultState, action) {
+export default function form(state = [], action) {
   switch (action.type) {
     case ADD_INPUT:
       return [...state, {
@@ -53,6 +37,8 @@ export default function form(state = defaultState, action) {
       ];
       nextState.splice(action.nextIndex, 0, item);
       return nextState;
+    case REPLACE_INPUTS:
+      return action.formData;
     default:
       return state;
   }
