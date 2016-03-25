@@ -1,6 +1,13 @@
 var webpack = require("webpack");
 var path = require('path');
 
+if process.env.NODE_ENV === "production" {
+  var babelPresets = [ 'es2015', 'react' ]
+} else {
+  var babelPresets = [ 'es2015', 'react', 'react-hmre' ]
+}
+
+
 module.exports = {
   entry: {
     app: ["./src/stylesheets/index.scss", "./src/index.js"],
@@ -24,7 +31,7 @@ module.exports = {
       loader: "babel",
       include: __dirname,
       query: {
-        presets: [ 'es2015', 'react' ]
+        presets: babelPresets
       }
     }, {
       test: /\.scss$/,
