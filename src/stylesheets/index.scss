@@ -28,62 +28,62 @@ body {
       width: 400px;
     }
   }
-}
 
-.form-building-blocks {
-  border: 1px solid #9b9b9b;
-  border-radius: 4px;
-  margin-bottom: 5px;
-  min-height: 50px;
-  position: relative;
+  .form-building-blocks {
+    border: 1px solid #9b9b9b;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    min-height: 50px;
+    position: relative;
 
-  h4,
-  li {
-    cursor: pointer;
+    h4,
+    li {
+      cursor: pointer;
 
-    &:hover {
-      text-decoration: underline;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .close-button {
+      cursor: pointer;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+
+    [draggable="true"] {
+      cursor: move;
     }
   }
 
-  .close-button {
-    cursor: pointer;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-  }
-
-  [draggable="true"] {
+  .input-wrapper {
+    border: 1px solid #9b9b9b;
+    border-radius: 4px;
     cursor: move;
-  }
-}
+    height: 50px;
+    margin-bottom: 5px;
+    position: relative;
 
-.input-wrapper {
-  border: 1px solid #9b9b9b;
-  border-radius: 4px;
-  cursor: move;
-  height: 50px;
-  margin-bottom: 5px;
-  position: relative;
+    .input-type {
+      float: left;
+      width: 80px;
+    }
 
-  .input-type {
-    float: left;
-    width: 80px;
-  }
+    .input-label {
+      margin-left: 80px;
+    }
 
-  .input-label {
-    margin-left: 80px;
-  }
+    .edit-btn {
+      position: absolute;
+      right: 60px;
+      top: 0;
+    }
 
-  .edit-btn {
-    position: absolute;
-    right: 60px;
-    top: 0;
-  }
-
-  .remove-btn {
-    position: absolute;
-    right: 0;
-    top: 0;
+    .remove-btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
   }
 }

@@ -29,6 +29,7 @@ export default function form(state = [], action) {
         Object.assign({}, state[action.index], action.inputProperties),
         ...state.slice(action.index + 1)
       ];
+
     case REORDER_INPUTS:
       const item = state[action.currentIndex];
       const nextState = [
@@ -37,8 +38,10 @@ export default function form(state = [], action) {
       ];
       nextState.splice(action.nextIndex, 0, item);
       return nextState;
+
     case REPLACE_INPUTS:
       return action.formData;
+
     default:
       return state;
   }

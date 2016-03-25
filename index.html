@@ -6,7 +6,7 @@
   <body>
     <div id="root">
     </div>
-    <script src="/static/vendor.bundle.js"></script>
+    <!-- <script src="/static/vendor.bundle.js"></script> -->
     <script src="/static/bundle.js"></script>
     <script>
       var formState = [{
@@ -29,7 +29,7 @@
 
       var rootEl = document.getElementById("root");
 
-      FormBuilder.setInitialState([]);
+      FormBuilder.setInitialState(formState);
       FormBuilder.render(rootEl);
       FormBuilder.subscribe(function(state) { console.table(state) });
       var x = function() {FormBuilder.setState(formState)};

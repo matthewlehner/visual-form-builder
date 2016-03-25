@@ -4,7 +4,7 @@ var path = require('path');
 module.exports = {
   entry: {
     app: ["./src/stylesheets/index.scss", "./src/index.js"],
-    vendor: ["react", "react-dom", "react-redux", "redux"]
+    // vendor: ["react", "react-dom", "react-redux", "redux"]
   },
 
   output: {
@@ -21,8 +21,11 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loaders: ["babel"],
-      include: __dirname
+      loader: "babel",
+      include: __dirname,
+      query: {
+        presets: [ 'es2015', 'react' ]
+      }
     }, {
       test: /\.scss$/,
       loaders: [
@@ -34,7 +37,7 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js"),
+    // new webpack.optimize.CommonsChunkPlugin(#<{(| chunkName= |)}>#"vendor", #<{(| filename= |)}>#"vendor.bundle.js"),
     new webpack.DefinePlugin({
       PRODUCTION: process.env.NODE_ENV === "production"
     })

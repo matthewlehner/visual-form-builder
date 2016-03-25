@@ -1,15 +1,15 @@
 import React from "react";
 import { render } from "react-dom";
 import Root from "./containers/root";
-import configureStore from "./store/configure-store";
-import { addIdsArrayOfObjects, removeIdsFromArrayOfObjects } from "./helpers";
+import configureStore from "./store/configure-store.prod";
+import { addIdsToArrayOfObjects, removeIdsFromArrayOfObjects } from "./helpers";
 import { replaceInputs } from "./actions/form";
 
 function selectForm(state) {
   return state.form;
 }
 
-let store;
+const store = configureStore();
 let currentValue;
 
 const FormBuilder = {
@@ -21,14 +21,11 @@ const FormBuilder = {
   },
 
   setInitialState(formState) {
-    const formStateForStore = addIdsArrayOfObjects(formState);
-    store = configureStore({
-      form: formStateForStore
-    });
+    this.setState(formState);
   },
 
   setState(formState) {
-    const formStateForStore = addIdsArrayOfObjects(formState);
+    const formStateForStore = addIdsToArrayOfObjects(formState);
     store.dispatch(replaceInputs(formStateForStore));
   },
 

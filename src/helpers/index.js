@@ -4,16 +4,17 @@ export function randomId() {
   ).slice(0, 5);
 }
 
-export function addIdsArrayOfObjects(array) {
+export function addIdsToArrayOfObjects(array) {
   return array.map((item) => {
-    item.id = randomId(); // eslint-disable-line no-param-reassign
-    return item;
+    const itemWithId = Object.assign({}, item, {id: randomId()});
+    return itemWithId;
   });
 }
 
 export function removeIdsFromArrayOfObjects(array) {
   return array.map((item) => {
-    delete item.id; // eslint-disable-line no-param-reassign
-    return item;
+    let newItem = Object.assign({}, item);
+    delete newItem.id; // eslint-disable-line no-param-reassign
+    return newItem;
   });
 }
